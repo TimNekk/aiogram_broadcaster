@@ -9,7 +9,7 @@ A simple and straightforward broadcasting implementation for aiogram
 
 ## Installaiton
 
-    $ pip install aiogram-broadcaster
+    $ pip install git+https://github.com/TimNekk/aiogram_broadcaster.git
 
 ## Examples
 
