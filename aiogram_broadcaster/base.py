@@ -152,7 +152,7 @@ class BaseBroadcaster(abc.ABC):
 
     async def _start_broadcast(self) -> None:
         for chat in self.chats:
-            logging.info(str(self))
+            self.logger.info(str(self))
             chat_id, chat_args = self._parse_args(chat)
             if await self.send(chat_id=chat_id, chat_args=chat_args):
                 self._successful.append(chat)
@@ -164,8 +164,8 @@ class BaseBroadcaster(abc.ABC):
         self._change_running_status(True)
         await self._start_broadcast()
         self._change_running_status(False)
-        logging.info(f'{len(self._successful)}/{len(self.chats)} messages were sent out')
+        self.logger.info(f'{len(self._successful)}/{len(self.chats)} messages were sent out')
 
     async def close_bot(self) -> None:
-        logging.warning('GOODBYE')
+        self.logger.warning('GOODBYE')
         await self.bot.session.close()
